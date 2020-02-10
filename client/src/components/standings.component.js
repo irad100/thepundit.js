@@ -1,53 +1,48 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
+const Standing = props => (
+  <tr>
+    <td>{props.standing.rank}</td>
+    <td>{props.standing.team.name}</td>
+    <td>{props.standing.all.played}</td>
+    <td>{props.standing.points}</td>
+  </tr>
+)
 
+const standingsList = (StandingsData) => {
+  return StandingsData.map(currentStanding => {
+    return <Standing standing={currentStanding} key={currentStanding.team_id}/>;
+  })
+}
 
+export default function StandingsList() {
+  const [StandingsData, setStandingsData] = useState([]);
 
-export const StandingsList = (props) => {
   useEffect(() => {
-    axios.get('https://api-football-v1.p.rapidapi.com/v2/leagueTable/2', { headers: { 'x-rapidapi-host': 'api-football-v1.p.rapidapi.com', 'x-rapidapi-key': '3RSAeWzqDlmshEiZFf7fj6avRbMQp1DLRQ9jsnH7rTWhkTVRTe' } })
-    .then(response => {
-        this.setState({ Standings: response.data })
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+    axios.get('https://api-football-beta.p.rapidapi.com/standings', { params: {'league': '39', 'season': '2019'}, headers: { 'x-rapidapi-host': 'api-football-beta.p.rapidapi.com', 'x-rapidapi-key': 'c0c09819cemsh0af3823c52ce5acp11c3e7jsn5fbf2bcfea9d' } })
+      .then(response => {
+        console.log(response.data.response[0].league.standings[0])
+        setStandingsData(response.data.response[0].league.standings[0])
+      });
   }, []);
 
-  const Standings = props => (
-    <tr>
-      <td>{props.Standings.Position}</td>
-      <td>{props.Standings.Club}</td>
-      <td>{props.Standings.Played}</td>
-      <td>{props.Standings.Points}</td>
-    </tr>
-  )
-
-  const StandingsList = () => {
-    return this.state.Standings.map(currentStandings => {
-      return <Standings Standings={currentStandings}/>;
-    })
-  }
-
   return (
-      <div>
-      <h3>League Standings</h3>
+    <div>
+      <h3>Premier League Table</h3>
       <table className="table">
-          <thead className="thead-light">
+        <thead className="thead-light">
           <tr>
-              <th>Position</th>
-              <th>Club</th>
-              <th>Played</th>
-              <th>Points</th>
+            <th>Position</th>
+            <th>Club</th>
+            <th>Played</th>
+            <th>Points</th>
           </tr>
-          </thead>
-          <tbody>
-          { StandingsList() }
-          </tbody>
+        </thead>
+        <tbody>
+          { standingsList(StandingsData) }
+        </tbody>
       </table>
-      </div>
-  )
-
+    </div>
+  );
 }
