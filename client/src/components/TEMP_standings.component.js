@@ -1,18 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './stackedTable.css';
-import svg from './epl.svg'
-import teamColors from './team-colors.json';
-import teamIds from './team-ids.json';
-
 
 export default function StandingsList() {
   const [StandingsData, setStandingsData] = useState([]);
 
   useEffect(() => {
-    axios.get('https://api-football-beta.p.rapidapi.com/standings', { params: {'league': '39', 'season': '2019'}, headers: { 'x-rapidapi-host': 'api-football-beta.p.rapidapi.com', 'x-rapidapi-key': '3RSAeWzqDlmshEiZFf7fj6avRbMQp1DLRQ9jsnH7rTWhkTVRTe' } })
+    axios.get('https://footballapi.pulselive.com/football/standings?compSeasons=274', { headers: { 'origin': ' https://www.premierleague.com' } })
       .then(response => {
-        console.log(response.data.response[0].league.standings[0])
+        console.log(response.data.response)
         setStandingsData(response.data.response[0].league.standings[0])
       });
   }, []);
@@ -21,7 +17,7 @@ export default function StandingsList() {
   const Standing = props => (
     <tr style={{background: '#C8142F'}}>
       <td>{props.standing.rank}</td>
-      <td><img src={'https://resources.premierleague.com/premierleague/badges/t'+'.svg'} alt='' width={30} height={30}></img> {props.standing.team.name}</td>
+      <td>{props.standing.team.name}</td>
       <td>{props.standing.all.played}</td>
       <td>{props.standing.goalsDiff}</td>
       <td>{props.standing.points}</td>
@@ -36,17 +32,16 @@ export default function StandingsList() {
 
   return (
     <div>
+      <h3 style={{color: 'white'}}>Premier League Table</h3>
       <table>
-        <thead>
-          <tr>
-            <th colSpan="2">
-              <img src={svg} alt='' width={30} height={30}></img> PREMIER LEAGUE
+        <tr style={{background: 'white'}}>
+          <th colSpan="2">
+            PREMIER LEAGUE
             </th>
-            <th>P</th>
-            <th>GD</th>
-            <th>PTS</th>
-          </tr>
-        </thead>
+          <th>P</th>
+          <th>GD</th>
+          <th>PTS</th>
+        </tr>
         <tbody>
           { standingsList(StandingsData) }
         </tbody>
