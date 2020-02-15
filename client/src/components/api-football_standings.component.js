@@ -3,24 +3,25 @@ import axios from 'axios';
 import './stackedTable.css';
 import svg from './epl.svg'
 
+
 export default function StandingsList() {
   const [StandingsData, setStandingsData] = useState([]);
 
   useEffect(() => {
-    axios.get('https://api.football-data.org/v2/competitions/2021/standings', { headers: { 'X-Auth-Token': '901186e638fd4baa999bb2c32f4ef7d5' } })
+    axios.get('https://api-football-beta.p.rapidapi.com/standings', { params: {'league': '39', 'season': '2019'}, headers: { 'x-rapidapi-host': 'api-football-beta.p.rapidapi.com', 'x-rapidapi-key': '3RSAeWzqDlmshEiZFf7fj6avRbMQp1DLRQ9jsnH7rTWhkTVRTe' } })
       .then(response => {
-        console.log(response.data.standings[0].table)
-        setStandingsData(response.data.standings[0].table)
+        console.log(response.data.response[0].league.standings[0])
+        setStandingsData(response.data.response[0].league.standings[0])
       });
   }, []);
 
 
   const Standing = props => (
     <tr style={{background: '#C8142F'}}>
-      <td>{props.standing.position}</td>
-      <td>{props.standing.team.name}</td>
-      <td>{props.standing.playedGames}</td>
-      <td>{props.standing.goalDifference}</td>
+      <td>{props.standing.rank}</td>
+      <td><img src={'https://resources.premierleague.com/premierleague/badges/t'+'.svg'} alt='' width={30} height={30}></img> {props.standing.team.name}</td>
+      <td>{props.standing.all.played}</td>
+      <td>{props.standing.goalsDiff}</td>
       <td>{props.standing.points}</td>
     </tr>
   )

@@ -1,5 +1,6 @@
 body {
-    background-color: #37003c;
+    background: #37003c;
+    color: white;
     font-family: Roboto;
     font-weight: 100;
 }
@@ -13,13 +14,13 @@ td, th {
     padding: 20px;
 }
 
-td {
-    color: white;
-}
-
 th {
     background: white;
     color: #37003c;
+}
+
+img {
+    margin-right: 20px;
 }
 
 tr td:first-child, th:first-child  { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
