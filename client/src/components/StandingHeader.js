@@ -6,11 +6,17 @@ const StandingsHeader = () => {
 
     return (
         <div className='standing header'>
-            <img className='ml-1' src={epl} alt="" width={35} height={35}/>
-            <div className='ml-2'>PREMIER LEAGUE</div>
-            <div className='ml-5'>P</div>
-            <div className='ml-5'>GD</div>
-            <div className='ml-5'>PTS</div>
+            <table className='w-100 m-auto'>
+                <tr>
+                    <td style={{width: '10%'}}>
+                        <img src={epl} alt="" width={35} height={35}/>
+                    </td>
+                    <td style={{width: '30%'}}>PREMIER LEAGUE</td>
+                    <td style={{width: '20%'}}>P</td>
+                    <td style={{width: '20%'}}>GD</td>
+                    <td style={{width: '20%'}}>PTS</td>
+                </tr>
+            </table>
         </div>
     );
 };
