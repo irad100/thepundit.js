@@ -1,0 +1,28 @@
+/*tr {*/
+/*    display:block;*/
+/*    position:absolute;*/
+/*    height:15px;*/
+/*    top:0px;*/
+/*}*/
+
+.standing {
+    display: flex;
+    width: 50rem;
+    height: 5rem;
+    text-align: left;
+    border-radius: 10px;
+    margin-top: -5px;
+}
+
+.standing > div, img {
+    margin: auto 0;
+}
+
+div.header{
+    background: white;
+    color: #37003c;
+}
+
+img {
+    margin-right: 20px;
+}
