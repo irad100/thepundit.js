@@ -6,6 +6,7 @@ const StandingsList = ({standing}) => {
     return (
         <div className='standing' style={{background: standing.Competitor.Color, color: standing.Competitor.TextColor}}>
             <table className='w-100 m-auto'>
+            <tbody>
                 <tr>
                     <td className='pl-3' style={{width: '10%'}}>{standing.Position || ''}</td>
                     <td style={{width: '10%'}}>
@@ -16,6 +17,7 @@ const StandingsList = ({standing}) => {
                     <td style={{width: '20%'}} >{standing.Ratio || ''}</td>
                     <td style={{width: '20%'}} >{standing.Points || ''}</td>
                 </tr>
+            </tbody>
             </table>
         </div>
     );
