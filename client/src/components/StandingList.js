@@ -15,7 +15,7 @@ export default function StandingsList() {
     }, []);
 
     return (
-         <>
+        <>
             <StandingHeader/>
             {data.map(row => {
                 return <StandingRow standing={row} key={row.team_id}/>;

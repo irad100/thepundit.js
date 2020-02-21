@@ -9,13 +9,12 @@ const StandingsHeader = () => {
             <table className='w-100 m-auto'>
             <tbody>
                 <tr>
-                    <td style={{width: '10%'}}>
-                        <img src={epl} alt="" width={35} height={35}/>
+                    <td style={{width: '2%'}}>
                     </td>
-                    <td style={{width: '30%'}}>PREMIER LEAGUE</td>
-                    <td style={{width: '20%'}}>P</td>
-                    <td style={{width: '20%'}}>GD</td>
-                    <td style={{width: '20%'}}>PTS</td>
+                    <td style={{width: '68%'}}><img style={{marginRight: '5px'}} src={epl} alt="" width={35} height={35}/>PREMIER LEAGUE</td>
+                    <td style={{width: '7%'}}>P</td>
+                    <td style={{width: '7%'}}>GD</td>
+                    <td style={{width: '7%', fontWeight: '600'}}>PTS</td>
                 </tr>
             </tbody>
             </table>
